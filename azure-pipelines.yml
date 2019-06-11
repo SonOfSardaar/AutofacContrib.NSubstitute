@@ -1,0 +1,11 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: MSBuild@1
+  displayName: 'Run a one-line script'
+  inputs:
+    configuration: Release 
