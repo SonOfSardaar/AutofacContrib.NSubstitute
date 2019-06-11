@@ -15,11 +15,11 @@ namespace AutofacContrib.NSubstitute.Tests
         {
         }
 
-        public class ItemA : IServiceItem
+        public class ServiceItemA : IServiceItem
         {
         }
 
-        public class ItemB : IServiceItem
+        public class ServiceItemB : IServiceItem
         {
         }
 
@@ -80,8 +80,8 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ItemA>();
-                var mockB = autosub.Provide<IServiceItem, ItemB>();
+                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
+                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestIEnumerableComponent>();
 
                 Assert.That(component.Items, Is.Not.Empty);
@@ -95,8 +95,8 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ItemA>();
-                var mockB = autosub.Provide<IServiceItem, ItemB>();
+                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
+                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestIListComponent>();
 
                 Assert.That(component.Items, Is.Not.Empty);
@@ -110,8 +110,8 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ItemA>();
-                var mockB = autosub.Provide<IServiceItem, ItemB>();
+                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
+                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestIReadOnlyCollectionComponent>();
 
                 Assert.That(component.Items, Is.Not.Empty);
@@ -125,8 +125,8 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ItemA>();
-                var mockB = autosub.Provide<IServiceItem, ItemB>();
+                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
+                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestICollectionComponent>();
 
                 Assert.That(component.Items, Is.Not.Empty);
@@ -140,8 +140,8 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ItemA>();
-                var mockB = autosub.Provide<IServiceItem, ItemB>();
+                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
+                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestIReadOnlyListComponent>();
 
                 Assert.That(component.Items, Is.Not.Empty);
