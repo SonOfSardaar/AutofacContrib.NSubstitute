@@ -65,11 +65,11 @@ namespace AutofacContrib.NSubstitute.Tests
 
         public sealed class TestIReadOnlyListComponent
         {
-            public readonly IReadOnlyList<IServiceItem> Items;
+            public readonly IReadOnlyList<IServiceItem> ServiceItems;
 
             public TestIReadOnlyListComponent(IReadOnlyList<IServiceItem> serviceItems)
             {
-                Items = serviceItems;
+                ServiceItems = serviceItems;
             }
         }
 
@@ -144,9 +144,9 @@ namespace AutofacContrib.NSubstitute.Tests
                 var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
                 var component = autosub.Resolve<TestIReadOnlyListComponent>();
 
-                Assert.That(component.Items, Is.Not.Empty);
-                Assert.That(component.Items.Contains(mockA), Is.True);
-                Assert.That(component.Items.Contains(mockB), Is.True);
+                Assert.That(component.ServiceItems, Is.Not.Empty);
+                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
+                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
             }
         }
     }
