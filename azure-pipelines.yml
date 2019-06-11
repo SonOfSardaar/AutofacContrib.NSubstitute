@@ -6,6 +6,7 @@ pool:
 
 steps:
 - task: MSBuild@1
-  displayName: 'Run a one-line script'
+  displayName: 'Build Solution'
   inputs:
-    configuration: Release 
+    configuration: 'Release'
+    solution: '**/*.sln' 
