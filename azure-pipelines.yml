@@ -1,15 +1,17 @@
-pool:
-  vmImage:'windows-2019'
+jobs:
+- job: NetCoreBuild
+  pool:
+    vmImage:'windows-2019'
 
-steps:
-- task: DotNetCoreCLI@2
-  displayName: "Restore Packages"
-  inputs:
-    command: 'restore'
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: "Restore Packages"
+    inputs:
+      command: 'restore'
 
-- task: DotNetCoreCLI@2
-  displayName: "Build Solution"
-  inputs:
-    command: 'build'
-    configuration: 'Release'
+  - task: DotNetCoreCLI@2
+    displayName: "Build Solution"
+    inputs:
+      command: 'build'
+      configuration: 'Release'
 
