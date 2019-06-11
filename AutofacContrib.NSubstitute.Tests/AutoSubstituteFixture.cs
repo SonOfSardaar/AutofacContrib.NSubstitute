@@ -19,7 +19,7 @@ namespace AutofacContrib.NSubstitute.Tests
             void RunB();
         }
 
-        public class A : IServiceA
+        public class ServiceA : IServiceA
         {
             public void RunA() { }
         }
@@ -75,7 +75,7 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using (var mock = new AutoSubstitute())
             {
-                var serviceA = mock.Provide<IServiceA, A>();
+                var serviceA = mock.Provide<IServiceA, ServiceA>();
 
                 Assert.IsNotNull(serviceA);
                 Assert.IsFalse(serviceA is ICallRouter);
