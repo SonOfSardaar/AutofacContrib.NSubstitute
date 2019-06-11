@@ -33,7 +33,7 @@ namespace AutofacContrib.NSubstitute
             (Service service, Func<Service, IEnumerable<IComponentRegistration>> registrationAccessor)
         {
             if (service == null)
-                throw new ArgumentNullException("service");
+                throw new ArgumentNullException(nameof(service));
 
             var typedService = service as IServiceWithType;
             if (typedService == null ||
@@ -50,10 +50,7 @@ namespace AutofacContrib.NSubstitute
             return new[] {rb.CreateRegistration()};
         }
 
-        public bool IsAdapterForIndividualComponents
-        {
-            get { return false; }
-        }
+        public bool IsAdapterForIndividualComponents => false;
 
         private static bool IsGenericListOrCollectionInterface(Type serviceType)
         {

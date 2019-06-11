@@ -18,6 +18,11 @@ namespace AutofacContrib.NSubstitute.Tests
     {
         public const int Value = 10;
 
+        public Dependency2()
+        {
+            
+        }
+
         public int SomeOtherMethod()
         {
             return Value;
@@ -114,11 +119,11 @@ namespace AutofacContrib.NSubstitute.Tests
         public void Example_test_with_standard_resolve()
         {
             const int val = 3;
-            var AutoSubstitute = new AutoSubstitute();
-            AutoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val);
-            AutoSubstitute.Resolve<IDependency1>().SomeMethod(val).Returns(c => c.Arg<int>());
+            var autoSubstitute = new AutoSubstitute();
+            autoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val);
+            autoSubstitute.Resolve<IDependency1>().SomeMethod(val).Returns(c => c.Arg<int>());
 
-            var result = AutoSubstitute.Resolve<MyClass>().AMethod();
+            var result = autoSubstitute.Resolve<MyClass>().AMethod();
 
             Assert.That(result, Is.EqualTo(val));
         }
@@ -127,12 +132,12 @@ namespace AutofacContrib.NSubstitute.Tests
         public void Example_test_with_concrete_type_provided()
         {
             const int val = 3;
-            var AutoSubstitute = new AutoSubstitute();
-            AutoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val); // This shouldn't do anything because of the next line
-            AutoSubstitute.Provide<IDependency2, Dependency2>();
-            AutoSubstitute.Resolve<IDependency1>().SomeMethod(Arg.Any<int>()).Returns(c => c.Arg<int>());
+            var autoSubstitute = new AutoSubstitute();
+            autoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val); // This shouldn't do anything because of the next line
+            autoSubstitute.Provide<IDependency2, Dependency2>();
+            autoSubstitute.Resolve<IDependency1>().SomeMethod(Arg.Any<int>()).Returns(c => c.Arg<int>());
 
-            var result = AutoSubstitute.Resolve<MyClass>().AMethod();
+            var result = autoSubstitute.Resolve<MyClass>().AMethod();
 
             Assert.That(result, Is.EqualTo(Dependency2.Value));
         }
@@ -142,11 +147,11 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             const int val1 = 3;
             const int val2 = 2;
-            var AutoSubstitute = new AutoSubstitute();
-            AutoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val1);
-            AutoSubstitute.Provide(new ConcreteClass(val2));
+            var autoSubstitute = new AutoSubstitute();
+            autoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val1);
+            autoSubstitute.Provide(new ConcreteClass(val2));
 
-            var result = AutoSubstitute.Resolve<MyClassWithConcreteDependency>().AMethod();
+            var result = autoSubstitute.Resolve<MyClassWithConcreteDependency>().AMethod();
 
             Assert.That(result, Is.EqualTo(val1 + val2));
         }
@@ -157,11 +162,11 @@ namespace AutofacContrib.NSubstitute.Tests
             const int val1 = 3;
             const int val2 = 2;
             const int val3 = 10;
-            var AutoSubstitute = new AutoSubstitute();
-            AutoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val1);
-            AutoSubstitute.SubstituteFor<ConcreteClass>(val2).Add(Arg.Any<int>()).Returns(val3);
+            var autoSubstitute = new AutoSubstitute();
+            autoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val1);
+            autoSubstitute.SubstituteFor<ConcreteClass>(val2).Add(Arg.Any<int>()).Returns(val3);
 
-            var result = AutoSubstitute.Resolve<MyClassWithConcreteDependency>().AMethod();
+            var result = autoSubstitute.Resolve<MyClassWithConcreteDependency>().AMethod();
 
             Assert.That(result, Is.EqualTo(val3));
         }
@@ -172,14 +177,12 @@ namespace AutofacContrib.NSubstitute.Tests
             const int val1 = 2;
             const int val2 = 3;
             const int val3 = 4;
-            var AutoSubstitute = new AutoSubstitute();
-            // Much better / more maintainable than:
-            //AutoSubstitute.SubstituteFor<ConcreteClassWithDependency>(AutoSubstitute.Resolve<IDependency1>(), val1);
-            AutoSubstitute.ResolveAndSubstituteFor<ConcreteClassWithDependency>(new TypedParameter(typeof(int), val1));
-            AutoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val2);
-            AutoSubstitute.Resolve<IDependency1>().SomeMethod(val1).Returns(val3);
+            var autoSubstitute = new AutoSubstitute();
+            autoSubstitute.ResolveAndSubstituteFor<ConcreteClassWithDependency>(new TypedParameter(typeof(int), val1));
+            autoSubstitute.Resolve<IDependency2>().SomeOtherMethod().Returns(val2);
+            autoSubstitute.Resolve<IDependency1>().SomeMethod(val1).Returns(val3);
 
-            var result = AutoSubstitute.Resolve<MyClassWithConcreteDependencyThatHasDependencies>().AMethod();
+            var result = autoSubstitute.Resolve<MyClassWithConcreteDependencyThatHasDependencies>().AMethod();
 
             Assert.That(result, Is.EqualTo(val2*val3*2));
         }

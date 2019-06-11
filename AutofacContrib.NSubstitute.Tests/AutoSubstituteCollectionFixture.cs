@@ -15,61 +15,61 @@ namespace AutofacContrib.NSubstitute.Tests
         {
         }
 
-        public class ServiceItemA : IServiceItem
+        public class ItemA : IServiceItem
         {
         }
 
-        public class ServiceItemB : IServiceItem
+        public class ItemB : IServiceItem
         {
         }
 
         public sealed class TestIEnumerableComponent
         {
-            public readonly IEnumerable<IServiceItem> ServiceItems;
+            public readonly IEnumerable<IServiceItem> Items;
 
             public TestIEnumerableComponent(IEnumerable<IServiceItem> serviceItems)
             {
-                ServiceItems = serviceItems;
+                Items = serviceItems;
             }
         }
 
         public sealed class TestIListComponent
         {
-            public readonly IList<IServiceItem> ServiceItems;
+            public readonly IList<IServiceItem> Items;
 
             public TestIListComponent(IList<IServiceItem> serviceItems)
             {
-                ServiceItems = serviceItems;
+                Items = serviceItems;
             }
         }
 
         public sealed class TestIReadOnlyCollectionComponent
         {
-            public readonly IReadOnlyCollection<IServiceItem> ServiceItems;
+            public readonly IReadOnlyCollection<IServiceItem> Items;
 
             public TestIReadOnlyCollectionComponent(IReadOnlyCollection<IServiceItem> serviceItems)
             {
-                ServiceItems = serviceItems;
+                Items = serviceItems;
             }
         }
 
         public sealed class TestICollectionComponent
         {
-            public readonly ICollection<IServiceItem> ServiceItems;
+            public readonly ICollection<IServiceItem> Items;
 
             public TestICollectionComponent(ICollection<IServiceItem> serviceItems)
             {
-                ServiceItems = serviceItems;
+                Items = serviceItems;
             }
         }
 
         public sealed class TestIReadOnlyListComponent
         {
-            public readonly IReadOnlyList<IServiceItem> ServiceItems;
+            public readonly IReadOnlyList<IServiceItem> Items;
 
             public TestIReadOnlyListComponent(IReadOnlyList<IServiceItem> serviceItems)
             {
-                ServiceItems = serviceItems;
+                Items = serviceItems;
             }
         }
 
@@ -80,13 +80,13 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
-                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
+                var mockA = autosub.Provide<IServiceItem, ItemA>();
+                var mockB = autosub.Provide<IServiceItem, ItemB>();
                 var component = autosub.Resolve<TestIEnumerableComponent>();
 
-                Assert.That(component.ServiceItems, Is.Not.Empty);
-                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
-                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
+                Assert.That(component.Items, Is.Not.Empty);
+                Assert.That(component.Items.Contains(mockA), Is.True);
+                Assert.That(component.Items.Contains(mockB), Is.True);
             }
         }
 
@@ -95,13 +95,13 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
-                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
+                var mockA = autosub.Provide<IServiceItem, ItemA>();
+                var mockB = autosub.Provide<IServiceItem, ItemB>();
                 var component = autosub.Resolve<TestIListComponent>();
 
-                Assert.That(component.ServiceItems, Is.Not.Empty);
-                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
-                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
+                Assert.That(component.Items, Is.Not.Empty);
+                Assert.That(component.Items.Contains(mockA), Is.True);
+                Assert.That(component.Items.Contains(mockB), Is.True);
             }
         }
 
@@ -110,13 +110,13 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
-                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
+                var mockA = autosub.Provide<IServiceItem, ItemA>();
+                var mockB = autosub.Provide<IServiceItem, ItemB>();
                 var component = autosub.Resolve<TestIReadOnlyCollectionComponent>();
 
-                Assert.That(component.ServiceItems, Is.Not.Empty);
-                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
-                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
+                Assert.That(component.Items, Is.Not.Empty);
+                Assert.That(component.Items.Contains(mockA), Is.True);
+                Assert.That(component.Items.Contains(mockB), Is.True);
             }
         }
 
@@ -125,13 +125,13 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
-                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
+                var mockA = autosub.Provide<IServiceItem, ItemA>();
+                var mockB = autosub.Provide<IServiceItem, ItemB>();
                 var component = autosub.Resolve<TestICollectionComponent>();
 
-                Assert.That(component.ServiceItems, Is.Not.Empty);
-                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
-                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
+                Assert.That(component.Items, Is.Not.Empty);
+                Assert.That(component.Items.Contains(mockA), Is.True);
+                Assert.That(component.Items.Contains(mockB), Is.True);
             }
         }
 
@@ -140,13 +140,13 @@ namespace AutofacContrib.NSubstitute.Tests
         {
             using(var autosub = new AutoSubstitute())
             {
-                var mockA = autosub.Provide<IServiceItem, ServiceItemA>();
-                var mockB = autosub.Provide<IServiceItem, ServiceItemB>();
+                var mockA = autosub.Provide<IServiceItem, ItemA>();
+                var mockB = autosub.Provide<IServiceItem, ItemB>();
                 var component = autosub.Resolve<TestIReadOnlyListComponent>();
 
-                Assert.That(component.ServiceItems, Is.Not.Empty);
-                Assert.That(component.ServiceItems.Contains(mockA), Is.True);
-                Assert.That(component.ServiceItems.Contains(mockB), Is.True);
+                Assert.That(component.Items, Is.Not.Empty);
+                Assert.That(component.Items.Contains(mockA), Is.True);
+                Assert.That(component.Items.Contains(mockB), Is.True);
             }
         }
     }
